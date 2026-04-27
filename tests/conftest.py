@@ -8,7 +8,7 @@ from app.db.schema import get_session
 
 
 @pytest.fixture
-def session():
+def client():
     engine = create_engine(
         "sqlite://",
         connect_args={"check_same_thread": False},
@@ -16,17 +16,10 @@ def session():
     )
     SQLModel.metadata.create_all(engine)
 
-    with Session(engine) as session:
-        yield session
-
-
-@pytest.fixture
-def client(session):
     def get_test_session():
-        yield session
+        with Session(engine) as s:
+            yield s
 
     router.dependency_overrides[get_session] = get_test_session
-
     yield TestClient(router)
-
     router.dependency_overrides.clear()

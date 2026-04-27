@@ -6,11 +6,12 @@ from typing import Annotated
 from fastapi import Depends, FastAPI
 from sqlmodel import Field, Session, SQLModel, create_engine
 
-counter = count()
+# counter = count()
 
 
 class Item(SQLModel, table=True):
-    id: int = Field(primary_key=True, default_factory=lambda: next(counter))
+    # id: int = Field(primary_key=True, default_factory=lambda: next(counter))
+    id: int = Field(primary_key=True)
     name: str = Field()
     price: int = Field()
     expiry_date: date | None = Field(default=None)
