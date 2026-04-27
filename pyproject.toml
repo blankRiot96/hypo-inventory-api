@@ -1,0 +1,18 @@
+[project]
+name = "app"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi[standard]>=0.136.1",
+    "sqlmodel>=0.0.38",
+]
+
+[dependency-groups]
+tests = [
+    "pytest>=9.0.3",
+]
+
+[tool.fastapi]
+entrypoint = "app.__main__:router"
