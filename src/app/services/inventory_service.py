@@ -18,9 +18,7 @@ def get_item_by_id(session: Session, item_id: int):
 
 
 def create_item(session: Session, item_body: ItemBody):
-    last_id = len(session.exec(select(Item)).all())
     item = Item(
-        id=last_id,
         name=item_body.name,
         price=item_body.price,
         expiry_date=item_body.expiry_date,

@@ -1,17 +1,13 @@
 from contextlib import asynccontextmanager
 from datetime import date
-from itertools import count
 from typing import Annotated
 
 from fastapi import Depends, FastAPI
 from sqlmodel import Field, Session, SQLModel, create_engine
 
-# counter = count()
-
 
 class Item(SQLModel, table=True):
-    # id: int = Field(primary_key=True, default_factory=lambda: next(counter))
-    id: int = Field(primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     name: str = Field()
     price: int = Field()
     expiry_date: date | None = Field(default=None)

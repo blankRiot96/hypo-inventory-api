@@ -34,7 +34,7 @@ def test_get_item_by_id(client: TestClient):
 
 
 def test_item_id_generation(client: TestClient):
-    for i in range(10):
+    for i in range(1, 11):
         response = client.post("/items/", json=test_item_body)
         assert response.status_code == 200
         assert response.json()["id"] == i
